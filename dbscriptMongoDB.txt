@@ -1,0 +1,192 @@
+db = db.getSiblingDB('dbStudents');
+print("You are not connected to database : "+db);
+db.Collection_Courses.drop();
+course1 =
+{
+    "Course_Name" : "Computing",
+    "Modules" : [ 
+        {
+            "Module_ID" : "CT6013",
+            "Module_Name" : "Advanced Database Systems",
+            "Module_Lecturer" : "Tr.Saw"
+        }, 
+        {
+            "Module_ID" : "CT6042",
+            "Module_Name" : "Secure Coding",
+            "Module_Lecturer" : "Tr.Saw"
+        }, 
+        {
+            "Module_ID" : "CT6033",
+            "Module_Name" : "Cyber Security Management",
+            "Module_Lecturer" : "Tr.Min"
+        }, 
+        {
+            "Module_ID" : "CT6036",
+            "Module_Name" : "Managing Information System",
+            "Module_Lecturer" : "Tr.Tun"
+        }
+    ]
+}
+course2 =
+{
+    "Course_Name" : "Computer Systems Engineering",
+    "Modules" : [ 
+        {
+            "Module_ID" : "CT6011",
+            "Module_Name" : "Programming",
+            "Module_Lecturer" : "Tr.Calvin"
+        }, 
+        {
+            "Module_ID" : "CT6012",
+            "Module_Name" : "Networking",
+            "Module_Lecturer" : "Tr.Stewart"
+        }, 
+        {
+            "Module_ID" : "CT6034",
+            "Module_Name" : "Website Design & Development",
+            "Module_Lecturer" : "Tr.Kelley"
+        }, 
+        {
+            "Module_ID" : "CT6035",
+            "Module_Name" : "Professional Practice",
+            "Module_Lecturer" : "Tr.Darin"
+        }
+    ]
+}
+
+course3 =
+{
+    "Course_Name" : "Business Management & Strategy",
+    "Modules" : [ 
+        {
+            "Module_ID" : "CT6001",
+            "Module_Name" : "Understanding Strategy",
+            "Module_Lecturer" : "Tr.Harris"
+        }, 
+        {
+            "Module_ID" : "CT6002",
+            "Module_Name" : "Investigative study",
+            "Module_Lecturer" : "Tr.Myo"
+        }, 
+        {
+            "Module_ID" : "CT6003",
+            "Module_Name" : "Strategic marketing",
+            "Module_Lecturer" : "Tr.Jaime"
+        }, 
+        {
+            "Module_ID" : "CT6004",
+            "Module_Name" : "Financial management",
+            "Module_Lecturer" : "Tr.Waling"
+        }
+    ]
+}
+db.Collection_Courses.insert(course1);
+db.Collection_Courses.insert(course2);
+db.Collection_Courses.insert(course3);
+
+db.Collection_Students.drop();
+
+student1 = {
+    "Student_ID" :   "S001",
+    "First_Name"  :   "Amber",
+    "Last_Name"  :   "Ajol",
+    "Email"  :   "amberajol@gmail.com",
+    "Course_Name"  :   "Computing",
+    "Enroll_Year"  :   "2020",
+
+}
+
+student2 = {
+    "Student_ID" :   "S002",
+    "First_Name"  :   "Krystal",
+    "Last_Name"  :   "Jung",
+    "Email"  :   "krystaljung@gmail.com",
+    "Course_Name"  :   "Business Management & Strategy",
+    "Enroll_Year"  :   "2021",
+}
+
+student3 = {
+    "Student_ID" :   "S003",
+    "First_Name"  :   "Becky",
+    "Last_Name"  :   "Armstrong",
+    "Email"  :   "armstrong@gmail.com",
+    "Course_Name"  :   "Computer Systems Engineering",
+    "Enroll_Year"  :   "2022",
+}
+
+db.Collection_Students.insert(student1);
+db.Collection_Students.insert(student2);
+db.Collection_Students.insert(student3);
+
+db.Collection_Marks.drop();
+
+mark1 = {
+    "Student_ID"    :   "S001",
+    "Course_Name"  :   "Computing",
+    "Module_ID" : "CT6013",
+    "Module_Name" : "Advanced Database Systems",
+    "Mark"  :   80,
+    "Enroll_Year"  :   "2020",
+}
+
+mark2 = {
+    "Student_ID"    :   "S001",
+    "Course_Name"  :   "Computing",
+    "Module_ID" : "CT6042",
+    "Module_Name" : "Secure Coding",
+    "Mark"  :   70,
+    "Enroll_Year"  :   "2020",
+}
+
+mark3 = {
+    "Student_ID"    :   "S001",
+    "Course_Name"  :   "Computing",
+    "Module_ID" : "CT6033",
+    "Module_Name" : "Cyber Security Management",
+    "Mark"  :   60,
+    "Enroll_Year"  :   "2020",
+}
+
+mark4 = {
+    "Student_ID"    :   "S001",
+    "Course_Name"  :   "Computing",
+    "Module_ID" : "CT6036",
+    "Module_Name" : "Managing Information System",
+    "Mark"  :   60,
+    "Enroll_Year"  :   "2020",
+}
+db.Collection_Marks.insert(mark1);
+db.Collection_Marks.insert(mark2);
+db.Collection_Marks.insert(mark3);
+db.Collection_Marks.insert(mark4);
+
+
+db.Collection_Users.drop();
+
+user1 = {
+    "Email" :   "admin@gmail.com",
+    "password"  :   "Admin01",
+    "role"  :   "admin",
+}
+
+user2 = {
+    "Email" :   "amberajol@gmail.com",
+    "password"  :   "Amber",
+    "role"  :   "student",
+}
+
+user3 = {
+    "Email" :   "trtun@gmail.com",
+    "password"  :   "Trtun",
+    "role"  :   "teacher",
+}
+
+db.Collection_Users.insert(user1);
+db.Collection_Users.insert(user2);
+db.Collection_Users.insert(user3);
+
+cursor = db.Collection_Courses.find();
+cursor = db.Collection_Students.find();
+cursor = db.Collection_Marks.find();
+cursor = db.Collection_Users.find();
+cursor.forEach(printjson);
