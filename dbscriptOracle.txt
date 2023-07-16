@@ -1,0 +1,62 @@
+DROP TABLE Students CASCADE CONSTRAINTS; 
+DROP TABLE Modules CASCADE CONSTRAINTS; 
+DROP TABLE Enrollment CASCADE CONSTRAINTS; 
+DROP TABLE Lecturers CASCADE CONSTRAINTS; 
+DROP TABLE Marks CASCADE CONSTRAINTS; 
+DROP TABLE Courses CASCADE CONSTRAINTS; 
+DROP TABLE CourseEnrollment CASCADE CONSTRAINTS; 
+
+CREATE TABLE Students (
+    StudentID NUMBER PRIMARY KEY,
+    Name VARCHAR2(100),
+    Course VARCHAR2(100),
+    EnrollmentYear NUMBER,
+);
+
+CREATE TABLE Modules (
+    ModuleID NUMBER PRIMARY KEY,
+    ModuleName VARCHAR2(100),
+
+);
+
+CREATE TABLE Enrollment (
+    EnrollmentID NUMBER PRIMARY KEY,
+    StudentID NUMBER,
+    ModuleID NUMBER,
+    
+    FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
+    FOREIGN KEY (ModuleID) REFERENCES Modules(ModuleID)
+);
+CREATE TABLE Lecturers (
+    LecturerID NUMBER PRIMARY KEY,
+    Name VARCHAR2(100),
+    
+);
+
+CREATE TABLE Marks (
+    MarkID NUMBER PRIMARY KEY,
+    LecturerID NUMBER,
+    ModuleID NUMBER,
+    StudentID NUMBER,
+    Mark NUMBER,
+   
+    FOREIGN KEY (LecturerID) REFERENCES Lecturers(LecturerID),
+    FOREIGN KEY (ModuleID) REFERENCES Modules(ModuleID),
+    FOREIGN KEY (StudentID) REFERENCES Students(StudentID)
+);
+CREATE TABLE Courses (
+    CourseID NUMBER PRIMARY KEY,
+    CourseName VARCHAR2(100),
+    
+);
+
+CREATE TABLE CourseEnrollment (
+    EnrollmentID NUMBER PRIMARY KEY,
+    StudentID NUMBER,
+    CourseID NUMBER,
+    EnrollmentYear NUMBER,
+    Passed BOOLEAN,
+    
+    FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
+    FOREIGN KEY (CourseID) REFERENCES Courses(CourseID)
+);
